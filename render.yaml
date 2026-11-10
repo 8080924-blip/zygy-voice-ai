@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: zygy-voice-ai
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: EXT_PATH
+        value: "1"
+      - key: TEXT_MODEL
+        value: "gemini-3.6-flash"
+      - key: TTS_MODEL
+        value: "gemini-3.8-flash-tts"
+      - key: EXTENSIONS
+        value: "[{\"p\":\"1\",\"m\":\"2\",\"g\":\"שלום אני זיגי שאל אותי כל דבר ובסיום הקש סולמית\",\"x\":\"\"}]"
+      - key: MAX_WORDS
+        value: "40"
+      - key: EXTRA_INSTRUCTION
+        value: "ענה בעברית פשוטה, נקייה ומכובדת, בלי קללות ובלי ביטויים גסים. אל תענה על: רכילות על ידוענים, תרבות פופולרית חילונית (טלוויזיה, סרטים, ספורט, מוזיקה חילונית), דתות אחרות וזרמים אחרים ביהדות, מין, פוריות והריון, וערעור על יסודות האמונה. בנושאים כאלה ענה במשפט אחד בלבד: בקו הזה אי אפשר לענות על הנושא הזה, אפשר לשאול שאלה אחרת. אל תסביר ואל תדון, גם אם חוזרים על השאלה בניסוח אחר. אל תפסוק הלכה למעשה, והפנה לרב. אל תמציא מקורות וציטוטים. בנושאי רפואה תן מידע כללי בלבד והפנה לרופא."
+      - key: GEMINI_API_KEYS
+        sync: false
+      - key: GEMINI_TTS_KEYS
+        sync: false
+      - key: YEMOT_TOKEN
+        sync: false
